@@ -7,6 +7,8 @@ package Class;
 import javax.swing.ButtonGroup;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -27,7 +29,7 @@ public class Window extends javax.swing.JFrame {
         bg.add(jRadioButton3);
         bg.add(jRadioButton4);
         
-        // Desabilita os TextFields inicialmente (considerando jTextField1 a jTextField6)
+        // Desabilita os TextFields inicialmente (jTextField1 a jTextField6)
         jTextField1.setEnabled(false);
         jTextField2.setEnabled(false);
         jTextField3.setEnabled(false);
@@ -63,6 +65,44 @@ public class Window extends javax.swing.JFrame {
         jRadioButton2.addActionListener(radioListener);
         jRadioButton3.addActionListener(radioListener);
         jRadioButton4.addActionListener(radioListener);
+        
+        // Novo ActionListener para o botão Calcular (jButton1)
+        jButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(jRadioButton1.isSelected()) {
+                    // Combo 1: exibe valor e imagem correspondentes
+                    jTextField7.setText("50.000");
+                    jPanel3.removeAll();
+                    JLabel label = new JLabel(new ImageIcon(getClass().getResource("/Imagenes/combo1.png")));
+                    jPanel3.add(label);
+                    jPanel3.revalidate();
+                    jPanel3.repaint();
+                } else if(jRadioButton2.isSelected()) {
+                    // Combo 2
+                    jTextField7.setText("60.000");
+                    jPanel3.removeAll();
+                    JLabel label = new JLabel(new ImageIcon(getClass().getResource("/Imagenes/combo2.png")));
+                    jPanel3.add(label);
+                    jPanel3.revalidate();
+                    jPanel3.repaint();
+                } else if(jRadioButton3.isSelected()) {
+                    // Combo 3
+                    jTextField7.setText("70.000");
+                    jPanel3.removeAll();
+                    JLabel label = new JLabel(new ImageIcon(getClass().getResource("/Imagenes/combo3.png")));
+                    jPanel3.add(label);
+                    jPanel3.revalidate();
+                    jPanel3.repaint();
+                } else if(jRadioButton4.isSelected()) {
+                    // Outro Pedido: limpa o campo de valor e o painel de imagem
+                    jTextField7.setText("");
+                    jPanel3.removeAll();
+                    jPanel3.revalidate();
+                    jPanel3.repaint();
+                }
+            }
+        });
     }
 
     /**
