@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -95,16 +97,85 @@ public class Window extends javax.swing.JFrame {
                     jPanel3.revalidate();
                     jPanel3.repaint();
                 } else if(jRadioButton4.isSelected()) {
-                    // Outro Pedido: limpa o campo de valor e o painel de imagem
-                    jTextField7.setText("");
+                    // Outro Pedido: processa os itens informados nos TextFields
+                    // Preços unitários arbitrários (em moeda colombiana)
+                    int priceHamburguesa = 15000;
+                    int priceHotDog = 12000;
+                    int priceSandwich = 18000;
+                    int priceTe = 5000;
+                    int priceRefresco = 6000;
+                    int pricePapas = 8000;
+                    
+                    // Obtém as quantidades dos TextFields (se vazio, considera 0)
+                    int qtyHamburguesa = parseIntOrZero(jTextField1.getText());
+                    int qtyHotDog = parseIntOrZero(jTextField2.getText());
+                    int qtySandwich = parseIntOrZero(jTextField3.getText());
+                    int qtyTe = parseIntOrZero(jTextField4.getText());
+                    int qtyRefresco = parseIntOrZero(jTextField5.getText());
+                    int qtyPapas = parseIntOrZero(jTextField6.getText());
+                    
+                    int totalCost = 0;
+                    
+                    // Cria um novo painel para listar os itens com layout vertical
+                    JPanel listPanel = new JPanel();
+                    listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
+                    
+                    // Verifica cada item e adiciona se a quantidade for maior que zero
+                    if(qtyHamburguesa > 0) {
+                        int cost = qtyHamburguesa * priceHamburguesa;
+                        totalCost += cost;
+                        listPanel.add(new JLabel("Hamburguesa - " + qtyHamburguesa + " - " + cost));
+                    }
+                    if(qtyHotDog > 0) {
+                        int cost = qtyHotDog * priceHotDog;
+                        totalCost += cost;
+                        listPanel.add(new JLabel("HotDog - " + qtyHotDog + " - " + cost));
+                    }
+                    if(qtySandwich > 0) {
+                        int cost = qtySandwich * priceSandwich;
+                        totalCost += cost;
+                        listPanel.add(new JLabel("Sandwich - " + qtySandwich + " - " + cost));
+                    }
+                    if(qtyTe > 0) {
+                        int cost = qtyTe * priceTe;
+                        totalCost += cost;
+                        listPanel.add(new JLabel("Te - " + qtyTe + " - " + cost));
+                    }
+                    if(qtyRefresco > 0) {
+                        int cost = qtyRefresco * priceRefresco;
+                        totalCost += cost;
+                        listPanel.add(new JLabel("Refresco - " + qtyRefresco + " - " + cost));
+                    }
+                    if(qtyPapas > 0) {
+                        int cost = qtyPapas * pricePapas;
+                        totalCost += cost;
+                        listPanel.add(new JLabel("Papas Fritas - " + qtyPapas + " - " + cost));
+                    }
+                    
+                    // Atualiza o jPanel3 com a lista de itens sem alterar o layout do form
                     jPanel3.removeAll();
+                    jPanel3.add(listPanel, java.awt.BorderLayout.CENTER);
                     jPanel3.revalidate();
                     jPanel3.repaint();
+                    
+                    // Exibe o valor total no jTextField7
+                    jTextField7.setText(String.valueOf(totalCost));
                 }
             }
         });
     }
 
+    /**
+     * Método auxiliar para converter uma string em inteiro, retornando 0 se estiver vazia ou inválida.
+     */
+    private int parseIntOrZero(String text) {
+        try {
+            return Integer.parseInt(text.trim());
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
