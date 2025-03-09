@@ -82,7 +82,7 @@ public class Window extends javax.swing.JFrame {
                     jPanel3.repaint();
                 } else if(jRadioButton2.isSelected()) {
                     // Combo 2
-                    jTextField7.setText("60.000");
+                    jTextField7.setText("40.000");
                     jPanel3.removeAll();
                     JLabel label = new JLabel(new ImageIcon(getClass().getResource("/Imagenes/combo2.png")));
                     jPanel3.add(label);
@@ -90,7 +90,7 @@ public class Window extends javax.swing.JFrame {
                     jPanel3.repaint();
                 } else if(jRadioButton3.isSelected()) {
                     // Combo 3
-                    jTextField7.setText("70.000");
+                    jTextField7.setText("30.000");
                     jPanel3.removeAll();
                     JLabel label = new JLabel(new ImageIcon(getClass().getResource("/Imagenes/combo3.png")));
                     jPanel3.add(label);
@@ -99,12 +99,12 @@ public class Window extends javax.swing.JFrame {
                 } else if(jRadioButton4.isSelected()) {
                     // Outro Pedido: processa os itens informados nos TextFields
                     // Preços unitários arbitrários (em moeda colombiana)
-                    int priceHamburguesa = 15000;
-                    int priceHotDog = 12000;
-                    int priceSandwich = 18000;
-                    int priceTe = 5000;
-                    int priceRefresco = 6000;
-                    int pricePapas = 8000;
+                    int priceHamburguesa = 45000;
+                    int priceHotDog = 35000;
+                    int priceSandwich = 25000;
+                    int priceTe = 7000;
+                    int priceRefresco = 8000;
+                    int pricePapas = 10000;
                     
                     // Obtém as quantidades dos TextFields (se vazio, considera 0)
                     int qtyHamburguesa = parseIntOrZero(jTextField1.getText());
@@ -525,7 +525,8 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        // Encerra a aplicação ao clicar no botão de saída
+        System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
